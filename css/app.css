@@ -17,7 +17,8 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
@@ -106,4 +107,41 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+
+.fa {
+    pointer-events: none;
+}
+
+.modal {
+    font-size: 2em;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    margin: auto;
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.win {
+    width: 100%;
+    text-align: center;
+}
+
+.play-again {
+    min-height: 50px;
+    min-width: 50px;
+    padding: 8px;
+    background-color: #02cc20;
+    border: 1px solid #02cc20;
+    border-radius: 4px;
+}
+
+.empty {
+    color: #fff;
 }

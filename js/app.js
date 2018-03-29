@@ -1,38 +1,233 @@
-/*
- * Create a list that holds all of your cards
- */
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
+let game = {
+	cards: [],
+	score: 0,
+	shuffledCards: [],
+	turn: 0,
+	init: function() {
+		let card = [];
+		game.shuffledCards = [];
+		card[ 0 ] = {
+			class: 'fa-ship',
+			guessed: false,
+			index: 0,
+		};
+		card[ 1 ] = {
+			class: 'fa-plane',
+			guessed: false,
+			index: 1,
+		};
+		card[ 2 ] = {
+			class: 'fa-moon-o',
+			guessed: false,
+			index: 2,
+		};
+		card[ 3 ] = {
+			class: 'fa-sun-o',
+			guessed: false,
+			index: 3,
+		};
+		card[ 4 ] = {
+			class: 'fa-rocket',
+			guessed: false,
+			index: 4,
+		};
+		card[ 5 ] = {
+			class: 'fa-cloud',
+			guessed: false,
+			index: 5,
+		};
+		card[ 6 ] = {
+			class: 'fa-bell',
+			guessed: false,
+			index: 6,
+		};
+		card[ 7 ] = {
+			class: 'fa-anchor',
+			guessed: false,
+			index: 7,
+		};
+		card = card.concat( card );
+		game.cards = card;
+		game.shuffledCards = game.shuffleCards( game.cards );
+		game.display();
+	},
+	shuffleCards: function() {
+		return shuffle( game.cards );
+	},
+	timer: 0,
+	sec: 0,
+	display: function() {
+		let deck = game.shuffledCards;
+		let fragment = new DocumentFragment();
+		for ( let i = 0; i < deck.length; i++ ) {
+			let li = document.createElement( 'li' );
+			li.classList.add( 'card' );
+			let iElement = document.createElement( 'i' );
+			iElement.classList.add( deck[ i ].class );
+			iElement.classList.add( 'fa' );
+			iElement.setAttribute( 'index', 'i' + deck[ i ].index );
+			li.appendChild( iElement );
+			li.addEventListener( 'click', function( event ) {
+				game.click( event.target );
+			} );
+			fragment.appendChild( li );
+		}
+		let list = document.getElementById( 'deck' );
+		list.innerHTML = '';
+		list.appendChild( fragment );
+		let move = document.getElementById( 'move' );
+		move.textContent = Math.round( game.moves );
+		let modalMove = document.getElementById( 'modal-move' );
+		modalMove.textContent = Math.round( game.moves );
+		let restart = document.getElementById( 'restart' );
+		restart.addEventListener( 'click', function( event ) {
+			game.reboot();
+			event.preventDefault();
+		} );
+		clearInterval( game.timer );
+		time();
+		document.getElementById( 'first-star' ).classList.remove( 'empty' );
+		document.getElementById( 'second-star' ).classList.remove( 'empty' );
+		document.getElementById( 'third-star' ).classList.remove( 'empty' );
+		document.getElementById( 'first-star-modal' ).classList.remove( 'empty' );
+		document.getElementById( 'second-star-modal' ).classList.remove( 'empty' );
+		document.getElementById( 'third-star-modal' ).classList.remove( 'empty' );
+	},
+	guessed: 0,
+	selectedCards: [],
+	selectedIds: [],
+	lastCardClicked: '',
+	moves: 0,
+	click: function( target ) {
+		if ( game.moves > 8 ) {
+			document.getElementById( 'third-star' ).classList.add( 'empty' );
+			document.getElementById( 'third-star-modal' ).classList.add( 'empty' );
+		}
+		if ( game.moves > 16 ) {
+			document.getElementById( 'second-star' ).classList.add( 'empty' );
+			document.getElementById( 'second-star-modal' ).classList.add( 'empty' );
+		}
+		if ( game.moves > 24 ) {
+			document.getElementById( 'first-star' ).classList.add( 'empty' );
+			document.getElementById( 'first-star-modal' ).classList.add( 'empty' );
+		}
+		game.moves = game.moves + 0.5;
+		let move = document.getElementById( 'move' );
+		move.textContent = Math.round( game.moves );
+		let modalMove = document.getElementById( 'modal-move' );
+		modalMove.textContent = Math.round( game.moves );
+		if ( game.lastCardClicked != target ) {
+			game.flip( target );
+			game.selectedCards.push( target );
+			game.selectedIds.push( target.childNodes[ 0 ].getAttribute( 'index' ) );
+			game.check( target );
+		}
+		if ( game.lastCardClicked === target && game.selectedCards.length === 0 ) {
+			game.flip( target );
+			game.selectedCards.push( target );
+			game.selectedIds.push( target.childNodes[ 0 ].getAttribute( 'index' ) );
+		}
+		game.lastCardClicked = target;
+	},
+	flip: function( target ) {
+		target.classList.add( 'open' );
+		target.classList.add( 'show' );
+		// flip card
+	},
+	lock: function( target ) {
+		target.classList.add( 'match' );
+		// flip card
+	},
+	hide: function( target ) {
+		target.classList.remove( 'open' );
+		target.classList.remove( 'show' );
+		// flip card
+	},
+	check: function() {
+		if ( game.selectedCards.length === 2 ) {
+			let firstId = game.selectedIds[ 0 ];
+			let secondId = game.selectedIds[ 1 ];
+			if ( game.selectedCards[ 0 ] != game.selectedCards[ 1 ] && firstId === secondId ) {
+				game.lock( game.selectedCards[ 0 ] );
+				game.lock( game.selectedCards[ 1 ] );
+				game.guessed++;
+				game.selectedCards = [];
+				game.selectedIds = [];
+				if ( game.guessed >= 8 ) {
+					game.win();
+				}
+			} else {
+				setTimeout( function wait() {
+					game.hide( game.selectedCards[ 0 ] );
+					game.hide( game.selectedCards[ 1 ] );
+					game.selectedCards = [];
+					game.selectedIds = [];
+				}, 300 );
+			}
+		}
+		if ( game.selectedCards.length === 0 ) {
+			return 0;
+		}
+		if ( game.selectedCards.length === 1 ) {
+			return 0;
+		}
+		if ( game.selectedCards.length > 2 ) {
+			game.selectedCards = [];
+			game.selectedIds = [];
+		}
+	},
+	win: function() {
+		let sec = document.getElementById( 'seconds' ).innerHTML;
+		let min = document.getElementById( 'minutes' ).innerHTML;
+		document.getElementById( 'modal-seconds' ).innerHTML = sec;
+		document.getElementById( 'modal-minutes' ).innerHTML = min;
+		let modal = document.getElementById( 'modal' );
+		modal.classList.remove( 'hide' );
+		let container = document.getElementById( 'container' );
+		container.classList.add( 'hide' );
+		let playAgain = document.getElementById( 'replay' );
+		playAgain.addEventListener( 'click', function( event ) {
+			event.preventDefault();
+			game.reboot();
+		} );
+	},
+	reboot: function() {
+		let modal = document.getElementById( 'modal' );
+		modal.classList.add( 'hide' );
+		let container = document.getElementById( 'container' );
+		container.classList.remove( 'hide' );
+		game.guessed = 0;
+		game.move = 0;
+		game.moves = 0;
+		game.selectedCards = [];
+		game.selectedIds = [];
+		game.lastCardClicked = '';
+		game.init();
+	}
+};
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
+function shuffle( array ) {
+	let currentIndex = array.length,
+		temporaryValue, randomIndex;
+	while ( currentIndex !== 0 ) {
+		randomIndex = Math.floor( Math.random() * currentIndex );
+		currentIndex -= 1;
+		temporaryValue = array[ currentIndex ];
+		array[ currentIndex ] = array[ randomIndex ];
+		array[ randomIndex ] = temporaryValue;
+	}
+	return array;
 }
+// Timer function from http://jsfiddle.net/fc37nckg/
+function time() {
+	game.sec = 0;
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+	function pad( val ) {
+		return val > 9 ? val : '0' + val;
+	}
+	game.timer = setInterval( function() {
+		document.getElementById( 'seconds' ).innerHTML = pad( ++game.sec % 60 );
+		document.getElementById( 'minutes' ).innerHTML = pad( parseInt( game.sec / 60, 10 ) );
+	}, 1000 );
+}
+game.init();
