@@ -58,7 +58,9 @@ let game = {
 	sec: 0,
 	display: function() {
 		let deck = game.shuffledCards;
-		let fragment = new DocumentFragment();
+		let ul = document.createElement( 'ul' );
+		ul.classList.add( 'deck' );
+		ul.setAttribute('id', 'deck');
 		for ( let i = 0; i < deck.length; i++ ) {
 			let li = document.createElement( 'li' );
 			li.classList.add( 'card' );
@@ -70,11 +72,11 @@ let game = {
 			li.addEventListener( 'click', function( event ) {
 				game.click( event.target );
 			} );
-			fragment.appendChild( li );
+			ul.appendChild( li );
 		}
-		let list = document.getElementById( 'deck' );
-		list.innerHTML = '';
-		list.appendChild( fragment );
+		let desk = document.getElementById( 'desk' );
+		desk.innerHTML = '';
+		desk.appendChild( ul );
 		let move = document.getElementById( 'move' );
 		move.textContent = Math.round( game.moves );
 		let modalMove = document.getElementById( 'modal-move' );
