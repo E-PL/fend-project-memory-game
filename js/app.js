@@ -8,42 +8,34 @@ let game = {
 		game.shuffledCards = [];
 		card[ 0 ] = {
 			class: 'fa-ship',
-			guessed: false,
 			index: 0,
 		};
 		card[ 1 ] = {
 			class: 'fa-plane',
-			guessed: false,
 			index: 1,
 		};
 		card[ 2 ] = {
 			class: 'fa-moon-o',
-			guessed: false,
 			index: 2,
 		};
 		card[ 3 ] = {
 			class: 'fa-sun-o',
-			guessed: false,
 			index: 3,
 		};
 		card[ 4 ] = {
 			class: 'fa-rocket',
-			guessed: false,
 			index: 4,
 		};
 		card[ 5 ] = {
 			class: 'fa-cloud',
-			guessed: false,
 			index: 5,
 		};
 		card[ 6 ] = {
 			class: 'fa-bell',
-			guessed: false,
 			index: 6,
 		};
 		card[ 7 ] = {
 			class: 'fa-anchor',
-			guessed: false,
 			index: 7,
 		};
 		card = card.concat( card );
