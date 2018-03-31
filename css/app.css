@@ -18,13 +18,14 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png');
-    background-size: cover;
-    /* Background pattern from Subtle Patterns */
+/*    background-size: cover;
+*/    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
 .container {
     width: 100%;
+    min-width: 300px;
     display: flex;
     justify-content: space-around;
     align-items: stretch;
@@ -37,6 +38,14 @@ h1 {
     font-family: 'Open Sans', sans-serif;
     font-weight: 300;
     font-size: 1.5em;
+    margin: 0.8em;
+}
+h2, h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
 }
 
 /*
@@ -87,7 +96,6 @@ h1 {
 .deck .card.match {
     cursor: default;
     background: #02ccba;
-    font-size: 33px;
 }
 
 /*
@@ -100,15 +108,14 @@ h1 {
     margin-bottom: 10px;
     display: flex;
     flex-flow: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-content: space-around;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
-    display: inline-block;
-    margin: 0 5px 0 0;
+    display: flex;
 }
 
 .score-panel .stars li {
@@ -117,8 +124,10 @@ h1 {
 }
 
 .score-panel .restart {
-    float: right;
+    font-size: 1.2em;
+    /* float: right; */
     cursor: pointer;
+    /* width: 51px; */
 }
 
 .fa {
@@ -141,7 +150,7 @@ h1 {
 }
 
 .win {
-    width: 80%;
+    width: 100%;
     text-align: center;
 }
 
@@ -155,11 +164,70 @@ h1 {
 }
 
 .empty {
-    color: #fff;
+    color: #fafafc;
 }
 .game {
     width: 100%;
 }
 .scores {
-    width: 90%;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+
+
+    align-content: stretch;
+    align-items: center;
+}
+
+.modal-moves,
+.modal-time {
+    width: 100%;
+}
+
+.modal-before-stars,
+.modal-after-stars
+ {
+    width: 32%;
+}
+.modal-stars {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+.section-title {
+    
+    display: inline-flex;
+}
+
+
+/*media queries*/
+
+/*tablet > 580 px*/
+@media screen and (min-width: 580px) {
+#container {
+    width: 65%;
+    margin: auto;
+    font-size: 1.7em;
+}
+}
+
+/*Desktop > 1000 px*/
+@media screen and (min-width: 1000px) {
+#container {
+    width: 35%;
+    font-size: 1.5em;
+}
+.modal-before-stars {
+    width: 45%;
+}
+}
+.scores-time {
+    width:20%;
+}
+.scores-moves {
+    width: 22%;
 }

@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet prefetch">
         <link href="css/app.css" rel="stylesheet">
         <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="favicon.ico" rel="shortcut icon">
     </head>
     <body>
         <div class="container" id="container">
@@ -21,6 +22,8 @@
 
             <section class="score-panel">
                 <div class="scores">
+
+                <div class="scores-stars">
                 <ul class="stars" id="star">
                     <li>
                         <i class="fa fa-star" id="first-star"></i>
@@ -34,7 +37,14 @@
                         <i class="fa fa-star" id="third-star"></i>
                     </li>
                 </ul>
-                <span class="moves" id="move">0</span> Moves <span id="minutes">00</span>:<span id="seconds">00</span>
+                </div>
+                <div class="scores-moves">
+                <span class="moves" id="move">0</span> Moves
+                </div>
+                <div class="scores-time"> 
+                
+                <span id="minutes">00</span>:<span id="seconds">00</span>
+                </div>
                 <div class="restart" id="restart">
                     <i class="fa fa-repeat"></i>
                 </div>
@@ -43,6 +53,7 @@
 
 
             <section class="game" id="desk">
+                <h2>Memory game</h2>
 
 
 
@@ -52,10 +63,13 @@
 
         <div class="modal hide" id="modal">
             <h1 class="modal-title">
-                You win!
+                You won!
             </h1>
-
+            <i class="fa fa-trophy"></i>
             <section class="score-panel win">
+                <h2>Your score:</h2>
+                <div class="modal-stars">
+                    <div class="modal-before-stars"></div>
                 <ul class="stars" id="modal-star">
                     <li>
                         <i class="fa fa-star" id="first-star-modal"></i>
@@ -69,7 +83,13 @@
                         <i class="fa fa-star" id="third-star-modal"></i>
                     </li>
                 </ul>
-                <span class="moves" id="modal-move">0</span> Moves <span id="modal-minutes">00</span>:<span id="modal-seconds">00</span>
+                <div class="modal-after-stars"></div>
+
+                </div>
+                <div class="modal-moves">
+                 Moves: <span class="moves" id="modal-move">0</span></div>
+                <h3>Your time:</h3>
+                <div class="modal-time"><span id="modal-minutes">00</span>:<span id="modal-seconds">00</span></div>
             </section>
 
             <div class="restart">
