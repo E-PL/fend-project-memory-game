@@ -25,6 +25,7 @@ You can access them in your javascript console like this:
 
 ## Credits
 
+
 I have used a timer function from http://jsfiddle.net/fc37nckg/
 
 and a shuffle function from: http://stackoverflow.com/a/2450976
