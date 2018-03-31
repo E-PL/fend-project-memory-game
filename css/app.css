@@ -1,28 +1,47 @@
+/*style tags*/
+
+/*set box sizing on html*/
 html {
     box-sizing: border-box;
 }
 
+/*set box sizing inheritance on all tags*/
 *,
 *::before,
 *::after {
     box-sizing: inherit;
 }
 
+/*reset margin and padding*/
 html,
 body {
-/*    width: 100%;
-    height: 100%;*/
     margin: 0;
     padding: 0;
 }
 
+/*set background image and font family on body*/
 body {
     background: #ffffff url('../img/geometry2.png');
-/*    background-size: cover;
-*/    /* Background pattern from Subtle Patterns */
     font-family: 'Coda', cursive;
 }
 
+/*style the headings tags*/
+h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    margin: 0.8em;
+}
+h2,
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 200;
+    font-size: 1em;
+    text-align: center;
+    width: 100%;
+}
+
+/*style the container*/
 .container {
     width: 100%;
     min-width: 300px;
@@ -34,24 +53,7 @@ body {
     padding-left: 10px;
 }
 
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    font-size: 1.5em;
-    margin: 0.8em;
-}
-h2, h3 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
-    font-size: 1em;
-    text-align: center;
-    width: 100%;
-}
-
-/*
- * Styles for the deck of cards
- */
-
+/*style the card deck*/
 .deck {
     width: 98%;
     /*min-height: 680px;*/
@@ -60,15 +62,14 @@ h2, h3 {
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: grid;
- 
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(4, 23%);
-  grid-template-rows: 100px 100px 100px;
-  grid-auto-flow: row;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 23%);
+    grid-template-rows: 100px 100px 100px;
+    grid-auto-flow: row;
     margin: 0 0 3em;
 }
 
+/*style the cards*/
 .deck .card {
     height: 90px;
     width: 100%;
@@ -83,25 +84,25 @@ h2, h3 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
+/*style the open cards*/
 .deck .card.open {
     transform: rotateY(0);
     background: #02b3e4;
     cursor: default;
 }
 
+/*style the showed cards*/
 .deck .card.show {
     font-size: 2em;
 }
 
+/*style the matched cards*/
 .deck .card.match {
     cursor: default;
     background: #02ccba;
 }
 
-/*
- * Styles for the Score Panel
- */
-
+/*style the score panel*/
 .score-panel {
     text-align: left;
     width: 100%;
@@ -112,28 +113,41 @@ h2, h3 {
     align-content: space-around;
 }
 
+/*set time div width*/
+.scores-time {
+    width:20%;
+}
+
+/*set moves div width*/
+.scores-moves {
+    width: 22%;
+}
+
+/*set flex and set margin and padding on the stars on the score panel*/
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: flex;
 }
 
+/*style the stars list*/
 .score-panel .stars li {
     list-style: none;
     display: inline-block;
 }
 
+/*style the restart button*/
 .score-panel .restart {
     font-size: 1.2em;
-    /* float: right; */
     cursor: pointer;
-    /* width: 51px; */
 }
 
+/*prevent events from originating from i tags (they should fire only on li targets)*/
 .fa {
     pointer-events: none;
 }
 
+/*style the modal*/
 .modal {
     font-size: 2em;
     width: 80%;
@@ -145,15 +159,18 @@ h2, h3 {
     text-align: center;
 }
 
+/*hide the modal*/
 .hide {
     display: none;
 }
 
+/*styles win*/
 .win {
     width: 100%;
     text-align: center;
 }
 
+/*styles the play again button*/
 .play-again {
     min-height: 50px;
     min-width: 50px;
@@ -163,34 +180,41 @@ h2, h3 {
     border-radius: 4px;
 }
 
+/*style the empty stars*/
 .empty {
     color: #fafafc;
 }
+
+/*set game section width*/
 .game {
     width: 100%;
 }
+
+/*set score div width and flex*/
 .scores {
     width: 100%;
     display: flex;
     flex-flow: row;
     flex-wrap: nowrap;
     justify-content: space-around;
-
-
     align-content: stretch;
     align-items: center;
 }
 
+/*set modal moves and time width*/
 .modal-moves,
 .modal-time {
     width: 100%;
 }
 
+/*set modal stars before and after width*/
 .modal-before-stars,
 .modal-after-stars
  {
     width: 32%;
 }
+
+/*set modal stars layout*/
 .modal-stars {
     width: 100%;
     display: flex;
@@ -198,16 +222,17 @@ h2, h3 {
     flex-wrap: nowrap;
     align-content: center;
 }
-.section-title {
-    
-    display: inline-flex;
-}
 
+/*set section title to inline*/
+.section-title {
+        display: inline-flex;
+}
 
 /*media queries*/
 
 /*tablet > 580 px*/
 @media screen and (min-width: 580px) {
+/*decrease container width, set margins and increase font size*/
 #container {
     width: 65%;
     margin: auto;
@@ -217,17 +242,13 @@ h2, h3 {
 
 /*Desktop > 1000 px*/
 @media screen and (min-width: 1000px) {
+/*decrease container width and font size*/
 #container {
     width: 35%;
     font-size: 1.5em;
 }
+/*adjust modal stars layout*/
 .modal-before-stars {
     width: 45%;
 }
-}
-.scores-time {
-    width:20%;
-}
-.scores-moves {
-    width: 22%;
 }

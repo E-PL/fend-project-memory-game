@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
         <title>
             Matching Game
         </title>
+        <!-- meta tags -->
+        <meta charset="utf-8">
         <meta content="Memory Game" name="description">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet prefetch">
-        <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet prefetch">
-        <link href="css/app.css" rel="stylesheet">
         <meta content="width=device-width, initial-scale=1" name="viewport">
+        <!-- stylesheets -->
+        <link href="css/app.css" rel="stylesheet">
+        <!-- font awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet prefetch">
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Coda" rel="stylesheet prefetch">
+        <!-- favicon -->
         <link href="favicon.ico" rel="shortcut icon">
     </head>
     <body>
+        <!-- main wrapper -->
         <div class="container" id="container">
+            <!-- main heading -->
             <header>
                 <h1>
                     Matching Game
                 </h1>
             </header>
-
+            <!-- score section -->
             <section class="score-panel">
                 <div class="scores">
-
                 <div class="scores-stars">
                 <ul class="stars" id="star">
                     <li>
@@ -41,8 +47,7 @@
                 <div class="scores-moves">
                 <span class="moves" id="move">0</span> Moves
                 </div>
-                <div class="scores-time"> 
-                
+                <div class="scores-time">            
                 <span id="minutes">00</span>:<span id="seconds">00</span>
                 </div>
                 <div class="restart" id="restart">
@@ -50,22 +55,19 @@
                 </div>
                 </div>
             </section>
-
-
+            <!-- game section -->
             <section class="game" id="desk">
                 <h2>Memory game</h2>
-
-
-
             </section>
-
+        <!-- main wrapper end -->
         </div>
-
+        <!-- modal start -->
         <div class="modal hide" id="modal">
             <h1 class="modal-title">
                 You won!
             </h1>
             <i class="fa fa-trophy"></i>
+            <!-- final score section -->
             <section class="score-panel win">
                 <h2>Your score:</h2>
                 <div class="modal-stars">
@@ -84,19 +86,18 @@
                     </li>
                 </ul>
                 <div class="modal-after-stars"></div>
-
                 </div>
                 <div class="modal-moves">
                  Moves: <span class="moves" id="modal-move">0</span></div>
                 <h3>Your time:</h3>
                 <div class="modal-time"><span id="modal-minutes">00</span>:<span id="modal-seconds">00</span></div>
             </section>
-
             <div class="restart">
                 <button class="play-again card" id="replay">Play again!</button>
             </div>
         </div>
-        <script src="js/app.js">
-        </script>
+        <!-- modal end -->
+        <!-- load game -->
+        <script src="js/app.js"></script>
     </body>
 </html>
