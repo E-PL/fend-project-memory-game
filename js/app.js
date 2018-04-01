@@ -64,18 +64,18 @@ let game = {
 	sec: 0,
 	// display the shuffled card list
 	display: function() {
-		let deck = game.shuffledCards;
+		const deck = game.shuffledCards;
 		// create the ul element and set its class and id
-		let ul = document.createElement( 'ul' );
+		const ul = document.createElement( 'ul' );
 		ul.classList.add( 'deck' );
 		ul.setAttribute('id', 'deck');
 		// every shuffled card
 		for ( let i = 0; i < deck.length; i++ ) {
 			// create a li element and set class
-			let li = document.createElement( 'li' );
+			const li = document.createElement( 'li' );
 			li.classList.add( 'card' );
 			// create an i element and set its class
-			let iElement = document.createElement( 'i' );
+			const iElement = document.createElement( 'i' );
 			iElement.classList.add( deck[ i ].class );
 			iElement.classList.add( 'fa' );
 			// set an index attribute to track matching cards
@@ -88,17 +88,17 @@ let game = {
 			ul.appendChild( li );
 		}
 		// clear the board
-		let desk = document.getElementById( 'desk' );
+		const desk = document.getElementById( 'desk' );
 		desk.innerHTML = '';
 		// append the created list to the page
 		desk.appendChild( ul );
 		// show the number of moves on the page and on the modal
-		let move = document.getElementById( 'move' );
+		const move = document.getElementById( 'move' );
 		move.textContent = Math.round( game.moves );
-		let modalMove = document.getElementById( 'modal-move' );
+		const modalMove = document.getElementById( 'modal-move' );
 		modalMove.textContent = Math.round( game.moves );
 		// set the click event listener on the restart button
-		let restart = document.getElementById( 'restart' );
+		const restart = document.getElementById( 'restart' );
 		restart.addEventListener( 'click', function( event ) {
 			game.reboot();
 			event.preventDefault();
@@ -143,7 +143,7 @@ let game = {
 		// increase moves counter
 		game.moves = game.moves + 0.5;
 		// update move counter on page and on the modal
-		let move = document.getElementById( 'move' );
+		const move = document.getElementById( 'move' );
 		move.textContent = Math.round( game.moves );
 		let modalMove = document.getElementById( 'modal-move' );
 		modalMove.textContent = Math.round( game.moves );
@@ -191,8 +191,8 @@ let game = {
 	check: function() {
 		// if it's the second part of the turn and two cards are selected
 		if ( game.selectedCards.length === 2 ) {
-			let firstId = game.selectedIds[ 0 ];
-			let secondId = game.selectedIds[ 1 ];
+			const firstId = game.selectedIds[ 0 ];
+			const secondId = game.selectedIds[ 1 ];
 			// if the card have the same index value but is a different HTML collection it's a match
 			if ( game.selectedCards[ 0 ] != game.selectedCards[ 1 ] && firstId === secondId ) {
 				// keep showing guessed cards
@@ -238,18 +238,18 @@ let game = {
 	// at victory show modal with score
 	win: function() {
 		// display winning time on the modal
-		let sec = document.getElementById( 'seconds' ).innerHTML;
-		let min = document.getElementById( 'minutes' ).innerHTML;
+		const sec = document.getElementById( 'seconds' ).innerHTML;
+		const min = document.getElementById( 'minutes' ).innerHTML;
 		document.getElementById( 'modal-seconds' ).innerHTML = sec;
 		document.getElementById( 'modal-minutes' ).innerHTML = min;
 		// show the modal
-		let modal = document.getElementById( 'modal' );
+		const modal = document.getElementById( 'modal' );
 		modal.classList.remove( 'hide' );
 		// hide the main page
-		let container = document.getElementById( 'container' );
+		const container = document.getElementById( 'container' );
 		container.classList.add( 'hide' );
 		// set the click event listener on the play again botton
-		let playAgain = document.getElementById( 'replay' );
+		const playAgain = document.getElementById( 'replay' );
 		playAgain.addEventListener( 'click', function( event ) {
 			event.preventDefault();
 			game.reboot();
@@ -258,10 +258,10 @@ let game = {
 	// reset game
 	reboot: function() {
 		// hide the modal
-		let modal = document.getElementById( 'modal' );
+		const modal = document.getElementById( 'modal' );
 		modal.classList.add( 'hide' );
 		// show the main page
-		let container = document.getElementById( 'container' );
+		const container = document.getElementById( 'container' );
 		container.classList.remove( 'hide' );
 		// reset game properties
 		game.guessed = 0;
