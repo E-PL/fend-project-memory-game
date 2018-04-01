@@ -178,11 +178,12 @@ h3 {
     background-color: #02cc20;
     border: 1px solid #02cc20;
     border-radius: 4px;
+    font-size: 1em;
 }
 
 /*style the empty stars*/
 .empty {
-    color: #fafafc;
+    color: #ebeced;
 }
 
 /*set game section width*/
@@ -238,6 +239,17 @@ h3 {
     margin: auto;
     font-size: 1.7em;
 }
+/*adjust modal stars layout*/
+.modal-before-stars,
+.modal-after-stars {
+    width: 45%;
+}
+#deck {
+    grid-template-rows: 120px 120px 120px;
+}
+#deck .card {
+    height: 120px;
+}
 }
 
 /*Desktop > 1000 px*/
@@ -247,8 +259,8 @@ h3 {
     width: 35%;
     font-size: 1.5em;
 }
-/*adjust modal stars layout*/
-.modal-before-stars {
-    width: 45%;
+#main-title {
+    margin: 3px;
+    padding: 3px;
 }
 }
