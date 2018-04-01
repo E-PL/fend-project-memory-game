@@ -264,3 +264,11 @@ h3 {
     padding: 3px;
 }
 }
+
+/*Desktop > 2000 px*/
+@media screen and (min-width: 2000px) {
+/*decrease container width*/
+#container {
+    width: 22%;
+}
+}
