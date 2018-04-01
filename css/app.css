@@ -265,10 +265,18 @@ h3 {
 }
 }
 
+/*Desktop > 1400 px*/
+@media screen and (min-width: 1400px) {
+/*decrease container width*/
+#container {
+    width: 27%;
+}
+}
 /*Desktop > 2000 px*/
 @media screen and (min-width: 2000px) {
 /*decrease container width*/
 #container {
     width: 22%;
+    max-width: 750px;
 }
 }
