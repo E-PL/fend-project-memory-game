@@ -1,7 +1,6 @@
-/*
-
-*/
-let game = {
+'use strict';
+// store game methods and properties in the game object
+const game = {
 	// initial unsorted cards
 	cards: [],
 	// store the shuffled cards
@@ -58,10 +57,6 @@ let game = {
 	shuffleCards: function() {
 		return shuffle( game.cards );
 	},
-	// timer instance
-	timer: 0,
-	// timer count
-	sec: 0,
 	// display the shuffled card list
 	display: function() {
 		const deck = game.shuffledCards;
@@ -103,10 +98,7 @@ let game = {
 			game.reboot();
 			event.preventDefault();
 		} );
-		// reset the timer
-		clearInterval( game.timer );
-		// start the timer
-		time();
+
 		// reset the star classes
 		document.getElementById( 'first-star' ).classList.remove( 'empty' );
 		document.getElementById( 'second-star' ).classList.remove( 'empty' );
@@ -125,8 +117,18 @@ let game = {
 	lastCardClicked: '',
 	// game moves
 	moves: 0,
+	// timer instance
+	timer: 0,
+	// timer count
+	sec: 0,
 	// when a card is clicked
 	click: function( target ) {
+		if (game.moves === 0) {
+			// reset the timer
+			clearInterval( game.timer );
+			// start the timer
+			time();
+		}
 		// decrease stars at 8, 16, 24 moves
 		if ( game.moves > 8 ) {
 			document.getElementById( 'third-star' ).classList.add( 'empty' );
@@ -166,6 +168,10 @@ let game = {
 			game.selectedCards.push( target );
 			// add its id to the active id list
 			game.selectedIds.push( target.childNodes[ 0 ].getAttribute( 'index' ) );
+		}
+		// decrease the moves counter if the same card is clicked twice in the second turn
+		if ( game.lastCardClicked === target && game.selectedCards.length === 1 ) {
+			game.moves = game.moves - 0.5;
 		}
 		// save the last clicked card
 		game.lastCardClicked = target;
@@ -272,6 +278,11 @@ let game = {
 		game.lastCardClicked = '';
 		// restart game
 		game.init();
+		// reset the timer
+		clearInterval( game.timer );
+		// document.getElementById( 'seconds' ).innerHTML = '00';
+		// document.getElementById( 'minutes' ).innerHTML = '00';
+
 	}
 };
 
