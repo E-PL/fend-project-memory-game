@@ -260,6 +260,8 @@ const game = {
 			event.preventDefault();
 			game.reboot();
 		} );
+		// reset the timer
+		clearInterval( game.timer );
 	},
 	// reset game
 	reboot: function() {
@@ -280,10 +282,8 @@ const game = {
 		game.init();
 		// reset the timer
 		clearInterval( game.timer );
-
 		document.getElementById( 'seconds' ).innerHTML = '00';
 		document.getElementById( 'minutes' ).innerHTML = '00';
-
 	}
 };
 
