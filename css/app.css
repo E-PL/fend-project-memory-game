@@ -58,15 +58,15 @@ h3 {
     width: 98%;
     /*min-height: 680px;*/
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-    padding: 32px;
+    padding: 1em;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(4, 23%);
-    grid-template-rows: 100px 100px 100px;
+    grid-template-rows: 100px 100px 100px 100px;
     grid-auto-flow: row;
-    margin: 0 0 3em;
+    margin: auto;
 }
 
 /*style the cards*/

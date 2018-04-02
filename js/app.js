@@ -77,9 +77,7 @@ const game = {
 			iElement.setAttribute( 'index', 'i' + deck[ i ].index );
 			li.appendChild( iElement );
 			// set the click event listener on the card
-			li.addEventListener( 'click', function( event ) {
-				game.click( event.target );
-			} );
+			li.addEventListener( 'click', game.click );
 			ul.appendChild( li );
 		}
 		// clear the board
@@ -122,7 +120,8 @@ const game = {
 	// timer count
 	sec: 0,
 	// when a card is clicked
-	click: function( target ) {
+	click: function( event ) {
+		const target = event.target;
 		if (game.moves === 0) {
 			// reset the timer
 			clearInterval( game.timer );
@@ -186,6 +185,8 @@ const game = {
 	lock: function( target ) {
 		// add match class
 		target.classList.add( 'match' );
+		// remove the event listener on the card
+		target.removeEventListener( 'click', game.click);
 	},
 	// hide cards
 	hide: function( target ) {
