@@ -123,17 +123,16 @@ h3 {
     width: 22%;
 }
 
-/*set flex and set margin and padding on the stars on the score panel*/
+/*set margin and padding on the stars*/
 .score-panel .stars {
-    margin: 0;
+    margin: auto;
     padding: 0;
-    display: flex;
 }
 
 /*style the stars list*/
 .score-panel .stars li {
     list-style: none;
-    display: inline-block;
+    display: inline-flex;
 }
 
 /*style the restart button*/
@@ -206,13 +205,6 @@ h3 {
 .modal-moves,
 .modal-time {
     width: 100%;
-}
-
-/*set modal stars before and after width*/
-.modal-before-stars,
-.modal-after-stars
- {
-    width: 32%;
 }
 
 /*set modal stars layout*/
